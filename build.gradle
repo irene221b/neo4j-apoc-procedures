@@ -4,7 +4,7 @@ plugins {
     id "com.bmuschko.nexus" version "2.3.1"
     id 'maven-publish'
     id 'antlr'
-    id "org.sonarqube" version "2.7"
+    id "org.sonarqube" version "3.3"
     id "com.github.hierynomus.license-report" version"0.15.0"
 }
 
@@ -12,6 +12,14 @@ downloadLicenses {
     excludeDependencies = [
             'org.neo4j.*'
     ]
+}
+
+sonarqube {
+  properties {
+    property "sonar.projectKey", "irene221b_neo4j-apoc-procedures"
+    property "sonar.organization", "irene221b"
+    property "sonar.host.url", "https://sonarcloud.io"
+  }
 }
 
 allprojects {
