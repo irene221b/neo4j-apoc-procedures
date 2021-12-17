@@ -14,14 +14,6 @@ downloadLicenses {
     ]
 }
 
-sonarqube {
-  properties {
-    property "sonar.projectKey", "irene221b_neo4j-apoc-procedures"
-    property "sonar.organization", "irene221b"
-    property "sonar.host.url", "https://sonarcloud.io"
-  }
-}
-
 allprojects {
     group = 'org.neo4j.procedure'
     version = '4.3.0.4'
