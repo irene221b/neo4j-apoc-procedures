@@ -51,20 +51,11 @@ public class MetricsTest {
         assumeTrue("Neo4j Instance should be up-and-running", neo4jContainer.isRunning());
         session = neo4jContainer.getSession();
 
-        boolean metricsExist = false;
-        while (!metricsExist)  {
-            try {
-                neo4jContainer.copyFileFromContainer("/var/lib/neo4j/metrics/neo4j.bolt.connections_opened.csv", inputStream -> null);
-                metricsExist = true;
-            } catch (Exception e) {
-                Thread.sleep(200);
-            }
-        }
     }
 
     @AfterClass
     public static void afterAll() {
-        if (neo4jContainer != null) {
+        if (neo4jContainer != null && neo4jContainer.isRunning()) {
             neo4jContainer.close();
         }
     }
@@ -111,10 +102,7 @@ public class MetricsTest {
     @Test
     public void shouldListMetrics() {
         testResult(session, "CALL apoc.metrics.list()",
-                (r) -> {
-
-            assertTrue("should have at least one element", r.hasNext());
-                });
+                (r) -> assertTrue("should have at least one element", r.hasNext()));
     }
 
 }

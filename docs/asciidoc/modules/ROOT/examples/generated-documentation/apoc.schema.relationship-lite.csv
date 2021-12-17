@@ -1,2 +1,3 @@
 ¦signature
 ¦apoc.schema.relationship.constraintExists(type :: STRING?, propertyName :: LIST? OF STRING?) :: (BOOLEAN?)
+¦apoc.schema.relationship.indexExists(labelName :: STRING?, propertyName :: LIST? OF STRING?) :: (BOOLEAN?)

@@ -79,9 +79,9 @@ public class ExportXls {
 
     private Stream<ProgressInfo> exportXls(@Name("file") String fileName, String source, Object data, Map<String,Object> configMap) throws Exception {
         ExportConfig c = new ExportConfig(configMap);
-        apocConfig.checkWriteAllowed(c);
+        apocConfig.checkWriteAllowed(c, fileName);
         try (Transaction tx = db.beginTx();
-             OutputStream out = getOutputStream(fileName, null);
+             OutputStream out = getOutputStream(fileName);
              SXSSFWorkbook wb = new SXSSFWorkbook(-1)) {
 
             XlsExportConfig config = new XlsExportConfig(configMap);
